@@ -1,0 +1,32 @@
+[
+  {
+    "id": "346fe9d0-727a-412b-b893-1b14c89aec7c",
+    "number": "INV-035067",
+    "date": "2025-08-24T12:03:55.067Z",
+    "currency": "USD",
+    "status": "Draft",
+    "items": [
+      {
+        "id": "0970ce72-77f0-4d31-a611-6df0a357a20e",
+        "description": "Design work",
+        "qty": 1,
+        "rate": 500,
+        "total": 500,
+        "type": "fixed"
+      }
+    ],
+    "subtotal": 500,
+    "discounts": null,
+    "taxes": [],
+    "extraCharges": 0,
+    "amountPaid": -2,
+    "total": 500,
+    "freelancer": {
+      "name": ""
+    },
+    "client": {
+      "id": "",
+      "name": ""
+    }
+  }
+]
