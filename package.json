@@ -32,6 +32,7 @@
     "@reduxjs/toolkit": "^2.8.2",
     "@shadcn/ui": "^0.0.4",
     "@tailwindcss/typography": "^0.5.16",
+    "@vercel/speed-insights": "^1.2.0",
     "canvas": "^3.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
