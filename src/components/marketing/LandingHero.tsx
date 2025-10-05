@@ -21,15 +21,15 @@ export default function LandingHero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
             >
-                {/* Gradient Headline */}
+                {/* Headline */}
                 <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                    Freelance Invoicing, Reimagined.
+                    Free Invoice Generator Online
                 </h1>
 
                 {/* Sub-heading */}
                 <p className="text-lg md:text-xl text-gray-700 mb-12 max-w-2xl mx-auto">
-                    Create, preview, and send beautiful invoices in minutes—multi-currency
-                    support, automatic calculations, and export to PDF, Word, or Image.
+                    Create professional invoices instantly. Add your logo, auto-calculate taxes,
+                    and download as PDF, Word, or Image—completely free, no signup required.
                 </p>
 
                 {/* Mini Features */}
@@ -43,9 +43,10 @@ export default function LandingHero() {
                     }}
                 >
                     {[
-                        "✔ Upload Freelancer & Client Logos",
-                        "✔ Automated Discounts, Taxes & Totals",
-                        "✔ Touch or File Upload Signatures",
+                        "✔ Fully Customizable Templates",
+                        "✔ Multi-Currency & Auto Tax Calculation",
+                        "✔ Upload Your Logo & Digital Signatures",
+                        "✔ Export as PDF, Word, or Image",
                     ].map((feature) => (
                         <motion.span
                             key={feature}
@@ -62,32 +63,17 @@ export default function LandingHero() {
                     <Button
                         size="lg"
                         className="px-8 py-3 text-lg rounded-2xl shadow-md hover:shadow-lg hover:scale-105 transition-transform"
-                        onClick={() => router.push("/pricing")}
+                        onClick={() => router.push("/dashboard")}
                     >
-                        Start Free 7-Day Trial
+                        Start Free Now
                     </Button>
-                    <Button
-                        variant="outline"
-                        size="lg"
-                        className="px-8 py-3 text-lg rounded-2xl border-gray-300 hover:bg-gray-50 hover:scale-105 transition-transform"
-                        onClick={() => router.push("/upgrade")}
+                    <a
+                        href="#about"
+                        className="px-8 py-3 text-lg rounded-2xl border border-gray-300 hover:bg-gray-50 hover:scale-105 transition-transform"
                     >
-                        View Demo
-                    </Button>
+                        Learn More
+                    </a>
                 </div>
-
-                {/* Preview Image with hover effect */}
-                {/* <motion.div
-                    className="mt-20"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 200 }}
-                >
-                    <img
-                        src="/invoice-preview.png"
-                        alt="Invoice Preview"
-                        className="mx-auto rounded-xl border shadow-xl max-w-full md:max-w-3xl hover:shadow-2xl transition-shadow"
-                    />
-                </motion.div> */}
 
                 {/* Scroll hint */}
                 <div className="mt-12 flex justify-center animate-bounce text-gray-400 text-sm">

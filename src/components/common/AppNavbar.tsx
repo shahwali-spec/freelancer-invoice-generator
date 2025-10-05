@@ -4,7 +4,7 @@ import { Navbar } from "@/components/ui/navbar";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { SignedIn, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
@@ -50,9 +50,19 @@ export default function AppNavbar() {
               >
                 Settings
               </Link>
+
+              {/* 🔑 Auth Condition */}
               <SignedIn>
                 <UserButton afterSignOutUrl="/" />
               </SignedIn>
+              <SignedOut>
+                <Link
+                  href="/sign-in"
+                  className={cn(buttonVariants({ variant: "default", size: "sm" }))}
+                >
+                  Login
+                </Link>
+              </SignedOut>
             </div>
 
             {/* 📱 Mobile menu button */}
@@ -110,9 +120,20 @@ export default function AppNavbar() {
               >
                 Settings
               </Link>
+
+              {/* 🔑 Auth Condition for Mobile */}
               <SignedIn>
                 <UserButton afterSignOutUrl="/" />
               </SignedIn>
+              <SignedOut>
+                <Link
+                  href="/sign-in"
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(buttonVariants({ variant: "default", size: "sm" }))}
+                >
+                  Login
+                </Link>
+              </SignedOut>
             </div>
           </motion.div>
         </>

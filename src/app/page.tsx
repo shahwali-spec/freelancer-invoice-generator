@@ -1,94 +1,151 @@
-// app/page.tsx
 "use client";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+
+// Navbar & Footer
+import LandingNavbar from "@/components/common/LandingNavbar";
+import Footer from "@/components/common/Footer";
+
+// Sections
 import LandingHero from "@/components/marketing/LandingHero";
 import FeaturesSection from "@/components/marketing/FeatureSection";
-import PricingTable from "@/components/marketing/PricingTable";
+import AboutSection from "@/components/marketing/AboutSection";
+import HelpSection from "@/components/marketing/HelpSection";
 
 export default function LandingPage() {
+  const currentYear = new Date().getFullYear();
+
+  // JSON-LD Structured Data for SEO
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Free Invoice Generator",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    description:
+      "Generate professional invoices online in minutes for free. Easy-to-use invoice template and generator for freelancers and small businesses.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    author: {
+      "@type": "Organization",
+      name: "Freelancer Invoice Generator",
+      url: "https://freelancerinvoicegenerator.com",
+    },
+  };
+
   return (
     <>
+      {/* SEO & Meta Tags */}
       <Head>
-        <title>Freelancer Invoice Generator | Simple & Transparent</title>
+        <title>Free Invoice Generator | Free Online Invoice Template</title>
         <meta
           name="description"
-          content="Create, preview, and export professional invoices in minutes. Start your 7-day free trial today!"
+          content="Generate professional invoices online for free. Easy-to-use invoice template and generator for freelancers and small businesses. No signup required."
+        />
+        <meta
+          name="keywords"
+          content="free invoice generator, free invoice template, online invoice maker, generate invoices online, freelancer invoice, invoice generator free"
+        />
+        <meta name="author" content="Freelancer Invoice Generator" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Free Invoice Generator" />
+        <meta
+          property="og:description"
+          content="Generate professional invoices online in minutes. Free, simple, and easy-to-use invoice template for freelancers."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://freelancerinvoicegenerator.com"
+        />
+        <meta
+          property="og:image"
+          content="https://freelancerinvoicegenerator.com/og-image.jpg"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Free Invoice Generator | Free Online Invoice Template"
+        />
+        <meta
+          name="twitter:description"
+          content="Generate invoices quickly and download instantly — free and easy online tool for freelancers."
+        />
+        <meta name="twitter:site" content="@YourBrandX" />
+
+        {/* Canonical */}
+        <link
+          rel="canonical"
+          href="https://freelancerinvoicegenerator.com"
+        />
+
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
         />
       </Head>
 
       <main className="bg-gradient-to-b from-blue-50 via-white to-white text-gray-800">
+        {/* Navbar */}
+        <LandingNavbar />
+
         {/* Hero Section */}
         <LandingHero />
 
         {/* Features */}
-        <section id="features" className="py-20">
+        <section
+          id="features"
+          className="py-20"
+          aria-labelledby="features-heading"
+        >
           <div className="max-w-6xl mx-auto px-4">
+            <h2 id="features-heading" className="sr-only">
+              Key Features
+            </h2>
             <FeaturesSection />
           </div>
         </section>
 
-        {/* Pricing */}
-        <section id="pricing" className="py-20 bg-gray-50">
-          <div className="text-center mb-12 px-4">
-            <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
-              Simple & Transparent Pricing
+        {/* About */}
+        <section
+          id="about"
+          className="py-20 bg-gray-50"
+          aria-labelledby="about-heading"
+        >
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 id="about-heading" className="sr-only">
+              About Freelancer Invoice Generator
             </h2>
-            <p className="text-lg text-gray-600">
-              Enjoy a <span className="font-semibold">7-day free trial</span> with all features.
-              Then only <span className="font-semibold">$5/month</span> or{" "}
-              <span className="font-semibold">$50/year</span>.
-            </p>
-          </div>
-          <div className="max-w-5xl mx-auto px-4">
-            <PricingTable />
-            <div className="mt-8 text-center">
-              <Link href="/pricing">
-                <Button
-                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 focus:ring-4 
-                             focus:ring-blue-200 text-white rounded-xl shadow transition-transform 
-                             hover:scale-105"
-                >
-                  View Full Pricing
-                </Button>
-              </Link>
-            </div>
+            <AboutSection />
           </div>
         </section>
 
-        {/* Auth Section */}
-        <section className="py-16 text-center px-4">
-          <SignedOut>
-            <div className="flex flex-wrap justify-center gap-4">
-              <SignUpButton mode="modal" forceRedirectUrl="/dashboard">
-                <Button
-                  className="bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 
-                             text-white px-6 py-3 rounded-xl shadow transition-transform 
-                             hover:scale-105"
-                >
-                  Get Started Free
-                </Button>
-              </SignUpButton>
-              <SignInButton mode="modal" forceRedirectUrl="/dashboard">
-                <Button
-                  variant="outline"
-                  className="px-6 py-3 rounded-xl hover:bg-gray-100 
-                             focus:ring-4 focus:ring-gray-200 transition-colors"
-                >
-                  Sign In
-                </Button>
-              </SignInButton>
-            </div>
-          </SignedOut>
+        {/* Help */}
+        <section
+          id="help"
+          className="py-20"
+          aria-labelledby="help-heading"
+        >
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 id="help-heading" className="sr-only">
+              Help and Support
+            </h2>
+            <HelpSection />
+          </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-10 text-center text-sm text-gray-500 border-t">
-          © {new Date().getFullYear()} Freelancer Invoice Generator. All rights reserved.
-        </footer>
+        <Footer />
       </main>
     </>
   );

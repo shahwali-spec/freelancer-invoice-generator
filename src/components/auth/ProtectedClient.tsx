@@ -1,15 +1,17 @@
 // components/auth/ProtectedClient.tsx
 "use client";
+
 import React from "react";
-import { useAuth } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function ProtectedClient({ children }: { children: React.ReactNode }) {
-  const { isLoaded, isSignedIn } = useAuth();
-  const router = useRouter();
+  const { isLoaded, isSignedIn } = useUser();
 
+  // Loading state
   if (!isLoaded) {
     return (
       <div className="flex h-screen items-center justify-center">
@@ -19,16 +21,6 @@ export default function ProtectedClient({ children }: { children: React.ReactNod
     );
   }
 
-  if (!isSignedIn) {
-    router.push("/(auth)/sign-in");
-    return (
-      <div className="flex h-screen items-center justify-center">
-        Redirecting to sign-in…
-      </div>
-    );
-  }
-
-  // 🎨 Framer Motion animation wrap
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -37,6 +29,17 @@ export default function ProtectedClient({ children }: { children: React.ReactNod
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {children}
+
+      {!isSignedIn && (
+        <div className="mt-6 p-4 border rounded-xl bg-muted/40 text-center">
+          <p className="text-sm text-muted-foreground mb-2">
+            🔒 Sign in to save invoices, access your history, and manage payment methods.
+          </p>
+          <Link href="/sign-in" className={buttonVariants({ size: "sm" })}>
+            Sign in
+          </Link>
+        </div>
+      )}
     </motion.div>
   );
 }
