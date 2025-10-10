@@ -72,6 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className}>
       <head>
+        <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d3ce0dd1a3f4b659333aaf0d644bc44"}'></script><!-- End Cloudflare Web Analytics -->
         {/* Structured Data: Software Application */}
         <script
           type="application/ld+json"
